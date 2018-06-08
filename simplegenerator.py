@@ -1,6 +1,6 @@
 #Importing configuration
-import ConfigParser
-config = ConfigParser.ConfigParser()
+import configparser
+config = configparser.ConfigParser()
 config.read("config.txt")
 
 word2vec_path = config.get("configuration","word2vec_path")
@@ -18,7 +18,7 @@ from stanfordcorenlp import StanfordCoreNLP
 # importing StandfordCoreNLP to tokenize, tag, and ner
 nlp = StanfordCoreNLP(stanford_corenlp_path)
 
-sentence = "ISIL members threw stones in Paris."
+sentence = "NCSU students threw stones on Google's server."
 sentence_tokens = nlp.word_tokenize(sentence)
 sentence_tags = nlp.pos_tag(sentence)
 sentence_ner = nlp.ner(sentence)
@@ -28,7 +28,7 @@ sentence_ner = nlp.ner(sentence)
 to_replace_ners = []
 to_replace_verbs = []
 
-topk = 3 
+topk = 10 
 replacement_ners = []
 replacement_verbs = []
 
