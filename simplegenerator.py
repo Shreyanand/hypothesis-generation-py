@@ -9,7 +9,7 @@ from stanfordcorenlp import StanfordCoreNLP
 # importing StandfordCoreNLP to tokenize, tag, and ner
 nlp = StanfordCoreNLP('./stanford-corenlp-full')
 
-sentence = "ISIS members threw stones in Paris."
+sentence = "ISIL members threw stones in Paris."
 sentence_tokens = nlp.word_tokenize(sentence)
 sentence_tags = nlp.pos_tag(sentence)
 sentence_ner = nlp.ner(sentence)
@@ -28,9 +28,9 @@ for (i, j) in sentence_ner:
     if(j!='O'):
         print(i, j)
         to_replace_ners.append((i,j))
-		similar_ners = model.most_similar(i, [], topk)
-		print(similar_ners)
-		replacements_ners.append((i, similar_ners))
+        similar_ners = model.most_similar(i, [], topk)
+        print(similar_ners)
+        replacement_ners.append((i, similar_ners))
     
 verb_check = 0
         
@@ -40,9 +40,9 @@ for (i, j) in sentence_tags:
         to_replace_verbs = [verb]
         verb_check = 0
         print(verb)
-		similar_verbs = model.most_similar(verb, [], topk)
-		print(similar_verbs)
-		replacement_verbs.append((verb,similar_verbs))
+        similar_verbs = model.most_similar(verb, [], topk)
+        print(similar_verbs)
+        replacement_verbs.append((verb,similar_verbs))
     
     if(j=='VBD'):
         print(i, j)
