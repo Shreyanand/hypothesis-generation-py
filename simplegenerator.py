@@ -1,13 +1,22 @@
+#Importing configuration
+import ConfigParser
+config = ConfigParser.ConfigParser()
+config.read("config.txt")
+
+word2vec_path = config.get("configuration","word2vec_path")
+stanford_corenlp_path = config.get("configuration","stanford_corenlp_path")
+
+
 # Importing word2vec to find similarity and neighboring words
 import gensim
 from gensim.models import Word2Vec
 
-model = gensim.models.KeyedVectors.load_word2vec_format('~/word2vec-model/GoogleNews-vectors-negative300.bin', binary=True) 
+model = gensim.models.KeyedVectors.load_word2vec_format(word2vec_path, binary=True) 
 
 from stanfordcorenlp import StanfordCoreNLP
 
 # importing StandfordCoreNLP to tokenize, tag, and ner
-nlp = StanfordCoreNLP('./stanford-corenlp-full')
+nlp = StanfordCoreNLP(stanford_corenlp_path)
 
 sentence = "ISIL members threw stones in Paris."
 sentence_tokens = nlp.word_tokenize(sentence)

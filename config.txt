@@ -1,0 +1,4 @@
+[configuration]
+word2vec_path = "\"
+stanford_corenlp_path = "\" 
+
