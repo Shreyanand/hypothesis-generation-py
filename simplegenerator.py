@@ -42,18 +42,18 @@ from gensim.models import Word2Vec
 
 model = gensim.models.KeyedVectors.load_word2vec_format('~/word2vec-model/GoogleNews-vectors-negative300.bin', binary=True) 
 
-topk = 10
+topk = 3 
 replacement_ners = []
 replacement_verbs = []
 
 for (i, j) in to_replace_ners:
-    similar_ners = model.most_similar(i, topk)
+    similar_ners = model.most_similar(i, [], topk)
     replacements_ners.append((i, similar_ners))
 
 print(replacement_ners)
     
 for verb in replacements_verbs:
-    similar_verbs = model.most_similar(verb, topk)
+    similar_verbs = model.most_similar(verb, [], topk)
     replacement_verbs.append((verb,similar_verbs))
 
 print(replacement_verbs)
